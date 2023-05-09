@@ -54,11 +54,11 @@ public class ContactController {
         String email = (String) session.getAttribute("email");
         User currentUser = userService.getUserByEmail(email);
         contact.setUser(currentUser);
-        contactService.saveContact(contact);
+        contactService.save(contact);
         return "redirect:/contacts";
     }
     @GetMapping("/edit/{id}")
-    public String editContactForm(@PathVariable("id") Long id, Model model) {
+    public String editContact(@PathVariable("id") Long id, Model model) {
         System.out.println(id);
         Contact contact = contactService.findContactById(id);
         model.addAttribute("contact", contact);
@@ -71,7 +71,7 @@ public class ContactController {
         String email = (String) session.getAttribute("email");
         User currentUser = userService.getUserByEmail(email);
         contact.setUser(currentUser);
-        contactService.saveContact(contact);
+        contactService.save(contact);
         return "redirect:/contacts";
     }
 

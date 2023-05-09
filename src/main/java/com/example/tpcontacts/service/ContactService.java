@@ -22,7 +22,7 @@ public class ContactService {
         return contactRepository.findById(id);
     }
 
-    public void saveContact(Contact contact) {
+    public void save(Contact contact) {
         contactRepository.save(contact);
     }
 
@@ -42,5 +42,12 @@ public class ContactService {
         return contactRepository.findContactById(id);
     }
 
+    public Contact saveContact(Contact contact) {
+        return contactRepository.save(contact);
+    }
+
+    public Contact fetchContactById(Long id) {
+        return contactRepository.findContactById(id);
+    }
 }
 

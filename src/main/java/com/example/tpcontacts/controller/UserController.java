@@ -18,8 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class UserController {
     @Autowired
-    private UserRepository userRepository;
-    @Autowired
     private UserService userService;
     public String signup(Model model) {
         model.addAttribute("user", new User());
