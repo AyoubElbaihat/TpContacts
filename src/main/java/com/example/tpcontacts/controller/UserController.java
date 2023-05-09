@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class UserController {
     @Autowired
     private UserService userService;
+    @GetMapping("/signup")
     public String signup(Model model) {
         model.addAttribute("user", new User());
         return "signup";
@@ -39,7 +40,7 @@ public class UserController {
         User user = userService.findByEmailAndPassword(email, password);
         if (user != null) {
             request.getSession().setAttribute("email", email);
-            return "redirect:/home";
+            return "redirect:/contacts";
         } else {
             return "login";
         }
@@ -49,16 +50,6 @@ public class UserController {
     public String logout(HttpServletRequest request) throws ServletException {
         request.getSession().invalidate();
         return "redirect:/login";
-    }
-
-    @GetMapping("/home")
-    public String home(HttpServletRequest request) {
-        String email = (String) request.getSession().getAttribute("email");
-        if (email != null) {
-            return "home";
-        } else {
-            return "redirect:/login";
-        }
     }
 
     @GetMapping("/edit")

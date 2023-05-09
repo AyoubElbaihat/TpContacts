@@ -3,44 +3,51 @@
 <head>
   <meta charset="UTF-8">
   <title>Contacts</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://getbootstrap.com/docs/5.2/assets/css/docs.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-<h1>Contacts</h1>
-<form action="/contacts/search" method="get">
-  <input type="text" name="keyword" placeholder="Search contacts...">
-  <button type="submit">Search</button>
-</form>
-<table>
-  <thead>
-  <tr>
-    <th>ID</th>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Email</th>
-    <th>Phone</th>
-    <th>Photo</th>
-    <th>Address</th>
-    <th>User</th>
-    <th>Actions</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr th:each="contact : ${contacts}">
-    <td th:text="${contact.id}"></td>
-    <td th:text="${contact.firstname}"></td>
-    <td th:text="${contact.lastname}"></td>
-    <td th:text="${contact.email}"></td>
-    <td th:text="${contact.phone}"></td>
-    <td th:text="${contact.photo}"></td>
-    <td th:text="${contact.address}"></td>
-    <td th:text="${contact.user.email}"></td>
-    <td>
-      <a th:href="@{/contacts/edit/{id}(id=${contact.id})}">Edit</a>
-      <a th:href="@{/contacts/delete/{id}(id=${contact.id})}">Delete</a>
-    </td>
-  </tr>
-  </tbody>
-</table>
-<a href="/contacts/add">Add Contact</a>
+<div th:include="header :: header"></div>
+<div class="container">
+  <h1>List of Contacts</h1>
+  <form class="d-flex" action="/contacts/search" method="get">
+    <input class="form-control me-2" type="text" name="keyword" placeholder="Search contacts...">
+    <button class="btn btn-primary" type="submit">Search</button>
+  </form>
+  <br>
+  <table class="table table-bordered text-center">
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Photo</th>
+      <th>Address</th>
+      <th>User</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="contact : ${contacts}">
+      <td th:text="${contact.id}"></td>
+      <td th:text="${contact.firstname}"></td>
+      <td th:text="${contact.lastname}"></td>
+      <td th:text="${contact.email}"></td>
+      <td th:text="${contact.phone}"></td>
+      <td><img th:src="${contact.photo}" alt="logo" width="100"></td>
+      <td th:text="${contact.address}"></td>
+      <td th:text="${contact.user.email}"></td>
+      <td>
+        <a th:href="@{/contacts/edit/{id}(id=${contact.id})}" class="btn btn-primary btn-sm">Edit</a>
+        <a th:href="@{/contacts/delete/{id}(id=${contact.id})}" class="btn btn-danger btn-sm">Delete</a>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <a href="/contacts/add" class="btn btn-success">Add Contact</a>
+</div>
 </body>
 </html>

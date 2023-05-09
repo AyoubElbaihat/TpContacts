@@ -27,6 +27,9 @@ public class ContactController {
     @GetMapping
     public String fetchAllContacts(HttpSession session, Model model) {
         String email = (String) session.getAttribute("email");
+        if (email == null) {
+            return "redirect:/login";
+        }
         User currentUser = userService.getUserByEmail(email);
         List<Contact> contacts = contactService.getAllContactsByUser(currentUser);
         model.addAttribute("contacts", contacts);
