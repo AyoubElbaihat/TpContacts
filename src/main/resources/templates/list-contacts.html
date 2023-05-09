@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Contacts</title>
+</head>
+<body>
+<h1>Contacts</h1>
+<form action="/contacts/search" method="get">
+  <input type="text" name="keyword" placeholder="Search contacts...">
+  <button type="submit">Search</button>
+</form>
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Email</th>
+    <th>Phone</th>
+    <th>Photo</th>
+    <th>Address</th>
+    <th>User</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="contact : ${contacts}">
+    <td th:text="${contact.id}"></td>
+    <td th:text="${contact.firstname}"></td>
+    <td th:text="${contact.lastname}"></td>
+    <td th:text="${contact.email}"></td>
+    <td th:text="${contact.phone}"></td>
+    <td th:text="${contact.photo}"></td>
+    <td th:text="${contact.address}"></td>
+    <td th:text="${contact.user.email}"></td>
+    <td>
+      <a th:href="@{/contacts/edit/{id}(id=${contact.id})}">Edit</a>
+      <a th:href="@{/contacts/delete/{id}(id=${contact.id})}">Delete</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<a href="/contacts/add">Add Contact</a>
+</body>
+</html>

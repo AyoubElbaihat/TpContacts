@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>User Profile</title>
+</head>
+<body>
+<h1>User Profile</h1>
+<p>Welcome, <span th:text="${user.getFirstname()}"></span> <span th:text="${user.getLastname()}"></span>!</p>
+<img th:src="${user.getPhoto()}" alt="User Photo">
+<p>Email: <span th:text="${user.getEmail()}"></span></p>
+<a href="/edit">Edit Profile</a>
+<a href="/logout">Logout</a>
+</body>
+</html>
